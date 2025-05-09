@@ -35,16 +35,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collider)
     {
-        if(collision.gameObject.name == "Floor")
+        if(collider.gameObject.name == "Floor")
         {
             isGrounded = true;
         }
-        else
-        {
-            Destroy(collision.gameObject);
-        }
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
     }
 
     private void Awake()

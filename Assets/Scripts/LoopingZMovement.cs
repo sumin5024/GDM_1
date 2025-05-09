@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LoopingZMovement : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class LoopingZMovement : MonoBehaviour
             pos.z = startZ;
             transform.position = pos;
             Player.Instance.isGrounded = true;
+            GameManager.Instance.isSpawn = true;
+
         }
 
         // 가속
@@ -35,10 +38,9 @@ public class LoopingZMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        // 장애물 충돌 시 감속
-        if (collision.gameObject.name != "Floor")
+        if(other.gameObject.tag == "Obstacle")
         {
             if (speed > 0.2f) { speed -= 0.2f; }
         }
