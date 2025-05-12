@@ -27,12 +27,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
+        Jump();
+        if(isGrounded )
         {
-            Debug.Log("jump");
-            PlayerRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            PlayerAnimator.SetBool("isJumping", false);
         }
+            
     }
 
     private void OnCollisionEnter(Collision collider)
@@ -55,6 +55,20 @@ public class Player : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+        }
+    }
+
+    public void Jump()
+    {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded && !PlayerAnimator.GetBool("isJumping"))
+        {
+
+            Debug.Log("jump");
+            PlayerAnimator.SetBool("isJumping", true);
+            //PlayerRigidBody.constraints = RigidbodyConstraints.FreezePositionZ;
+            PlayerRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+
         }
     }
 }

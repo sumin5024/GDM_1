@@ -9,6 +9,8 @@ public class LoopingZMovement : MonoBehaviour
     private float previousZ;
     public float totalZDistance = 0f;
 
+    public Vector3 moveDirection = Vector3.forward;
+
     private Vector3 startPosition;
 
     void Start()
@@ -22,7 +24,7 @@ public class LoopingZMovement : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        transform.Translate(moveDirection * speed * Time.deltaTime);
         
         CheckDistance();
         // 앞으로 이동 하여 반복
