@@ -11,26 +11,18 @@ public class Player : MonoBehaviour
     [Header("References")]
     public Rigidbody PlayerRigidBody;
     public Animator PlayerAnimator;
-    public Animator PlayerAnimator_slide;
 
     public CapsuleCollider PlayerCollider;
 
     public bool isGrounded = true;
 
-
    
     private Vector3 originalColliderCenter;
-
 
 
     public static Player Instance
     {
         get { return instance; } 
-    }
-
-    private void Start()
-    {
-        //transform.position = new Vector3(0.347f, 0.015f, -0.96f);
     }
 
     private void Update()
@@ -80,7 +72,6 @@ public class Player : MonoBehaviour
 
             Debug.Log("jump");
             PlayerAnimator.SetBool("isJumping", true);
-            //PlayerRigidBody.constraints = RigidbodyConstraints.FreezePositionZ;
             PlayerRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
 
