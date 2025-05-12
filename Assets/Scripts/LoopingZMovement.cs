@@ -13,6 +13,8 @@ public class LoopingZMovement : MonoBehaviour
 
     private Vector3 startPosition;
 
+    public static bool isShieldActive = false; // ½¯µå ¾ÆÀÌÅÛ 
+
     void Start()
     {
         startPosition = transform.position;
@@ -51,7 +53,16 @@ public class LoopingZMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Obstacle")
         {
-            if (speed > 0.2f) { speed -= 0.2f; }
+            if (!isShieldActive) // ½¯µå ÆÇÁ¤ 
+            {
+                if (speed > 0.2f) { speed -= 0.2f; }
+
+            }
+            else
+            {
+                Debug.Log("Shield On"); 
+            }
+            
         }
     }
 
@@ -67,4 +78,6 @@ public class LoopingZMovement : MonoBehaviour
 
         previousZ = currentZ;
     }
+
+
 }

@@ -57,7 +57,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
+        if (!other.CompareTag("Item"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     private void Awake()

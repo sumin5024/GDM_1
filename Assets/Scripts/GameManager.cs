@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
         get { return instance; }
     }
 
+    public void AddTime(float amount) // 시간 아이템 관련
+    {
+        LimitTime += amount;
+        if (LimitTime < 0f) LimitTime = 0f; 
+    }
+
     private void Awake()
     {
         if(instance == null)
@@ -47,4 +53,6 @@ public class GameManager : MonoBehaviour
             runBarSlider.value = runDistance/arrivalDistance;
         }
     }
+
+    
 }
