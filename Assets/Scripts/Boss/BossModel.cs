@@ -7,9 +7,9 @@ public class BossModel : MonoBehaviour
     {
         transform.localPosition = Vector3.forward * 0.5f;
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        if(transform.localPosition.z > 0)
+        if(transform.localPosition.z >= 0)
         {
             transform.localPosition += Vector3.back*Time.deltaTime * speed;
         }

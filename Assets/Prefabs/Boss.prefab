@@ -64,7 +64,6 @@ MonoBehaviour:
   Lowsafetybaton_prefab: {fileID: 1343010107011859215, guid: 178c8a0efc2827f4cb9d1ec2a943d483, type: 3}
   Safetybaton_gap: 0.03
   dashSpeed: 0.005
-  dashCollider_prefab: {fileID: 6337318002698205577, guid: 7df9f5e4f10c03245a848f30985d6670, type: 3}
   dashEffect: {fileID: 0}
   whistle: {fileID: 5788883424010684572, guid: 008de95c90c1cb04ab9adbd7f9268df7, type: 3}
   whistleDuration: 1
@@ -315,6 +314,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ba535d96845a33c499f339d444607a20, type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ba535d96845a33c499f339d444607a20, type: 3}
+      propertyPath: m_TagString
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 1143779052975538439, guid: ba535d96845a33c499f339d444607a20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

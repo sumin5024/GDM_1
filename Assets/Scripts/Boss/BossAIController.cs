@@ -48,10 +48,8 @@ public class BossAIController : MonoBehaviour
     public float Safetybaton_gap = 0.025f;
 
     [Header("Dash")]
-    public float dashSpeed = 0.01f;
-    public GameObject dashCollider_prefab;
-    public ParticleSystem dashEffect;
-
+    public float xSpeed = 0.01f;
+    public float aSpeed = 0.5f;
     [Header("WhistleSignal")]
     public GameObject whistle;
     public float whistleDuration;
@@ -110,6 +108,7 @@ public class BossAIController : MonoBehaviour
     }
     private void InitPattern()
     {
+        bossModel.transform.localPosition = Vector3.zero;
         bossModel.SetActive(true);
         tmp_whistle.SetActive(false);
         animator.SetInteger("ThrowBaton", -1);
@@ -123,7 +122,7 @@ public class BossAIController : MonoBehaviour
         yield return new WaitForSeconds(delaytime);
                  
         if (actionCoroutine != null) StopCoroutine(actionCoroutine);
-        if(isRandom)  act = Random.Range(2,3);
+        if(isRandom)  act = Random.Range(2, 3);
         else act = ++act% 4;
         switch (act)
         {
@@ -240,34 +239,33 @@ public class BossAIController : MonoBehaviour
 
     IEnumerator StartDash()
     {
+
         if (isDash) WhistleSignal();   //ȣ���� ���
-
+        animator.ResetTrigger("Idle");
         Debug.Log("StartDash");
-
-        yield return new WaitForSeconds(whistleDuration);   //ȣ����� ���� ���� �� �ð� ��
-
-        animator.SetTrigger("Idle");
 
         yield return new WaitForSeconds(whistleDuration);   //ȣ����� ���� ���� �� �ð� ��
 
         tmp_whistle.SetActive(false);
 
-        bossModel.SetActive(false); //�ִϸ��̼� ������Ʈ  ��Ȱ��ȭ
-
         //�뽬 ������Ʈ ����
-        Vector3 pos = transform.position;  
-        GameObject tmp = Instantiate(dashCollider_prefab, pos, Quaternion.identity);
-        Destroy(tmp, 2);
+        GameObject tmp = bossModel;
         //�̵�
-        float speed = 0;
+        float speed = xSpeed;
         float Zspeed = LoopingZMovement.speed;
-        while (tmp) 
+        animator.SetTrigger("Dash");
+        float timeout = 2;
+        while (timeout>0) 
         {
-            speed += dashSpeed;
-            tmp.transform.Translate(Vector3.back * (-Zspeed + speed) * Time.deltaTime);
+            float prez = bossModel.transform.position.z;
+            speed += xSpeed;
+            timeout -= Time.deltaTime;
+            tmp.transform.Translate(Vector3.forward * (aSpeed* speed) * Time.deltaTime);
+            //Debug.Log(" delta z : "+ (prez - bossModel.transform.position.z +"deltaTime " +Time.deltaTime));
             yield return null;
 
         }
+        bossModel.SetActive(false);
     }
 
 
