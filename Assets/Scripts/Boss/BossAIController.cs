@@ -42,7 +42,9 @@ public class BossAIController : MonoBehaviour
     public float Blast_gap = 0.025f;
 
     [Header("SwingSafetybaton")]
-    public GameObject safetybaton_prefab;
+    public GameObject Highsafetybaton_prefab;
+    public GameObject Middlesafetybaton_prefab;
+    public GameObject Lowsafetybaton_prefab;
     public float Safetybaton_gap = 0.025f;
 
     [Header("Dash")]
@@ -121,7 +123,7 @@ public class BossAIController : MonoBehaviour
         yield return new WaitForSeconds(delaytime);
                  
         if (actionCoroutine != null) StopCoroutine(actionCoroutine);
-        if(isRandom)  act = Random.Range(0,4);
+        if(isRandom)  act = Random.Range(2,3);
         else act = ++act% 4;
         switch (act)
         {
@@ -204,19 +206,31 @@ public class BossAIController : MonoBehaviour
 
         if (isSwingSafetybaton) WhistleSignal();    //ȣ����
 
-        Debug.Log("SwingSafetybaton");
+
 
         yield return new WaitForSeconds(whistleDuration);//ȣ����� ���� ���� �� �ð� ��
         tmp_whistle.SetActive(false);
 
         int h = Random.Range(0, 3);
         animator.SetInteger("ThrowBaton", h);
-
+        Debug.Log($"SwingSafetybaton : {h}");
+        yield return new WaitForSeconds(0.5f);
         //������ ������
         GameObject tmp;
         Vector3 pos = transform.position;
-        tmp = Instantiate(safetybaton_prefab, pos + Vector3.up*h* Safetybaton_gap, Quaternion.Euler(0,0,0));
-        Destroy(tmp, 2f);
+        switch (h) 
+        {
+            case 0:
+                tmp = Instantiate(Lowsafetybaton_prefab, pos + Vector3.up * h * Safetybaton_gap, Quaternion.Euler(0, 0, 0));
+                Destroy(tmp, 2f); break;
+            case 1:
+                tmp = Instantiate(Middlesafetybaton_prefab, pos + Vector3.up * h * Safetybaton_gap, Quaternion.Euler(0, 0, 0));
+                Destroy(tmp, 2f); break;
+            case 2:
+                tmp = Instantiate(Highsafetybaton_prefab, pos + Vector3.up * h * Safetybaton_gap, Quaternion.Euler(0, 0, 0));
+                Destroy(tmp, 2f); break;
+        }
+        animator.SetInteger("ThrowBaton", -1);
     }
 
     private void Dash() 

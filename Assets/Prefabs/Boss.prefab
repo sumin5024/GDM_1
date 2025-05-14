@@ -26,14 +26,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4620818221748581852}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.347, y: 0.1, z: -0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 930542557255950346}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5072686035972626199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,8 +59,10 @@ MonoBehaviour:
   cornDelayTime: 0.2
   blast_prefab: {fileID: 8097823162695466195, guid: cb0eff9500f8c1f479e6bc0e81ac6180, type: 3}
   Blast_gap: 0.025
-  safetybaton_prefab: {fileID: 1343010107011859215, guid: 5353b2c47bbc01441a17a48cda1311b5, type: 3}
-  Safetybaton_gap: 0.025
+  Highsafetybaton_prefab: {fileID: 1343010107011859215, guid: 5353b2c47bbc01441a17a48cda1311b5, type: 3}
+  Middlesafetybaton_prefab: {fileID: 1343010107011859215, guid: 12ef813b47f7b924894fc8d40ea8fac9, type: 3}
+  Lowsafetybaton_prefab: {fileID: 1343010107011859215, guid: 178c8a0efc2827f4cb9d1ec2a943d483, type: 3}
+  Safetybaton_gap: 0.03
   dashSpeed: 0.005
   dashCollider_prefab: {fileID: 6337318002698205577, guid: 7df9f5e4f10c03245a848f30985d6670, type: 3}
   dashEffect: {fileID: 0}
