@@ -586,7 +586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -1193,8 +1193,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Left Time:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b713fe056df1d35468f66519036c12f2, type: 2}
-  m_sharedMaterial: {fileID: -8520224124214457367, guid: b713fe056df1d35468f66519036c12f2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0341af175f942ce45827aaade7ca120e, type: 2}
+  m_sharedMaterial: {fileID: 7455830979159423518, guid: 0341af175f942ce45827aaade7ca120e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
