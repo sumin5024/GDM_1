@@ -1081,7 +1081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -2020,8 +2020,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Left Time:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0341af175f942ce45827aaade7ca120e, type: 2}
-  m_sharedMaterial: {fileID: 7455830979159423518, guid: 0341af175f942ce45827aaade7ca120e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b713fe056df1d35468f66519036c12f2, type: 2}
+  m_sharedMaterial: {fileID: -8520224124214457367, guid: b713fe056df1d35468f66519036c12f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2478,11 +2478,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714721388}
   m_Mesh: {fileID: 3260452099131564635, guid: 59c774a594f67784687540d229186dfa, type: 3}
-<<<<<<< HEAD
 --- !u!1 &1718171666
-=======
---- !u!1 &2109844939
->>>>>>> 6720578c8128150bb615bc6f4ca51e45d2e46393
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2490,35 +2486,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 1718171667}
   - component: {fileID: 1718171669}
   - component: {fileID: 1718171668}
   m_Layer: 5
   m_Name: Text (TMP)
-=======
-  - component: {fileID: 2109844941}
-  - component: {fileID: 2109844940}
-  m_Layer: 0
-  m_Name: Item_Spawner
->>>>>>> 6720578c8128150bb615bc6f4ca51e45d2e46393
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &1718171667
 RectTransform:
-=======
---- !u!114 &2109844940
-MonoBehaviour:
->>>>>>> 6720578c8128150bb615bc6f4ca51e45d2e46393
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1718171666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -2752,41 +2735,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080390931}
   m_CullTransparentMesh: 1
-=======
-  m_GameObject: {fileID: 2109844939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44a364020aa49664fa8eb4b470baeff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedItems:
-  - {fileID: 2551365345773625769, guid: 1493a5c31560edb4da5b76a6cc973892, type: 3}
-  - {fileID: 5630371679179335929, guid: 7d3053dbb2c43024fb5768139b7116f1, type: 3}
-  timeItems:
-  - {fileID: 3852607934104908886, guid: e6adc025442b0ce48aefbe107e11daff, type: 3}
-  - {fileID: 5586416163650578551, guid: 94e3467420d53ea48a325beec36d664c, type: 3}
-  shieldItem:
-  - {fileID: 8221052126324740354, guid: 2910c36768e47c045a73b1b1df397a04, type: 3}
-  fixedX: 0.347
-  spawnYRange: {x: 0.03, y: 0.08}
-  spawnZRange: {x: -0.66, y: 0.54}
-  spawnDelay: 5
---- !u!4 &2109844941
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109844939}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31426, y: 0.08207, z: -0.84888}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> 6720578c8128150bb615bc6f4ca51e45d2e46393
 --- !u!1001 &2146096884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5509,8 +5457,4 @@ SceneRoots:
   - {fileID: 1314189105}
   - {fileID: 76993834}
   - {fileID: 952132123390196310}
-<<<<<<< HEAD
   - {fileID: 627389063}
-=======
-  - {fileID: 2109844941}
->>>>>>> 6720578c8128150bb615bc6f4ca51e45d2e46393

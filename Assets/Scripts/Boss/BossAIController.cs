@@ -42,14 +42,14 @@ public class BossAIController : MonoBehaviour
     public float Blast_gap = 0.025f;
 
     [Header("SwingSafetybaton")]
-    public GameObject Highsafetybaton_prefab;
-    public GameObject Middlesafetybaton_prefab;
-    public GameObject Lowsafetybaton_prefab;
+    public GameObject safetybaton_prefab;
     public float Safetybaton_gap = 0.025f;
 
     [Header("Dash")]
-    public float xSpeed = 0.01f;
-    public float aSpeed = 0.5f;
+    public float dashSpeed = 0.01f;
+    public GameObject dashCollider_prefab;
+    public ParticleSystem dashEffect;
+
     [Header("WhistleSignal")]
     public GameObject whistle;
     public float whistleDuration;
@@ -108,7 +108,6 @@ public class BossAIController : MonoBehaviour
     }
     private void InitPattern()
     {
-        bossModel.transform.localPosition = Vector3.zero;
         bossModel.SetActive(true);
         tmp_whistle.SetActive(false);
         animator.SetInteger("ThrowBaton", -1);
@@ -122,7 +121,7 @@ public class BossAIController : MonoBehaviour
         yield return new WaitForSeconds(delaytime);
                  
         if (actionCoroutine != null) StopCoroutine(actionCoroutine);
-        if(isRandom)  act = Random.Range(2, 3);
+        if(isRandom)  act = Random.Range(0,4);
         else act = ++act% 4;
         switch (act)
         {
@@ -205,31 +204,19 @@ public class BossAIController : MonoBehaviour
 
         if (isSwingSafetybaton) WhistleSignal();    //ȣ����
 
-
+        Debug.Log("SwingSafetybaton");
 
         yield return new WaitForSeconds(whistleDuration);//ȣ����� ���� ���� �� �ð� ��
         tmp_whistle.SetActive(false);
 
         int h = Random.Range(0, 3);
         animator.SetInteger("ThrowBaton", h);
-        Debug.Log($"SwingSafetybaton : {h}");
-        yield return new WaitForSeconds(0.5f);
+
         //������ ������
         GameObject tmp;
         Vector3 pos = transform.position;
-        switch (h) 
-        {
-            case 0:
-                tmp = Instantiate(Lowsafetybaton_prefab, pos + Vector3.up * h * Safetybaton_gap, Quaternion.Euler(0, 0, 0));
-                Destroy(tmp, 2f); break;
-            case 1:
-                tmp = Instantiate(Middlesafetybaton_prefab, pos + Vector3.up * h * Safetybaton_gap, Quaternion.Euler(0, 0, 0));
-                Destroy(tmp, 2f); break;
-            case 2:
-                tmp = Instantiate(Highsafetybaton_prefab, pos + Vector3.up * h * Safetybaton_gap, Quaternion.Euler(0, 0, 0));
-                Destroy(tmp, 2f); break;
-        }
-        animator.SetInteger("ThrowBaton", -1);
+        tmp = Instantiate(safetybaton_prefab, pos + Vector3.up*h* Safetybaton_gap, Quaternion.Euler(0,0,0));
+        Destroy(tmp, 2f);
     }
 
     private void Dash() 
@@ -239,33 +226,34 @@ public class BossAIController : MonoBehaviour
 
     IEnumerator StartDash()
     {
-
         if (isDash) WhistleSignal();   //ȣ���� ���
-        animator.ResetTrigger("Idle");
+
         Debug.Log("StartDash");
+
+        yield return new WaitForSeconds(whistleDuration);   //ȣ����� ���� ���� �� �ð� ��
+
+        animator.SetTrigger("Idle");
 
         yield return new WaitForSeconds(whistleDuration);   //ȣ����� ���� ���� �� �ð� ��
 
         tmp_whistle.SetActive(false);
 
+        bossModel.SetActive(false); //�ִϸ��̼� ������Ʈ  ��Ȱ��ȭ
+
         //�뽬 ������Ʈ ����
-        GameObject tmp = bossModel;
+        Vector3 pos = transform.position;  
+        GameObject tmp = Instantiate(dashCollider_prefab, pos, Quaternion.identity);
+        Destroy(tmp, 2);
         //�̵�
-        float speed = xSpeed;
+        float speed = 0;
         float Zspeed = LoopingZMovement.speed;
-        animator.SetTrigger("Dash");
-        float timeout = 2;
-        while (timeout>0) 
+        while (tmp) 
         {
-            float prez = bossModel.transform.position.z;
-            speed += xSpeed;
-            timeout -= Time.deltaTime;
-            tmp.transform.Translate(Vector3.forward * (aSpeed* speed) * Time.deltaTime);
-            //Debug.Log(" delta z : "+ (prez - bossModel.transform.position.z +"deltaTime " +Time.deltaTime));
+            speed += dashSpeed;
+            tmp.transform.Translate(Vector3.back * (-Zspeed + speed) * Time.deltaTime);
             yield return null;
 
         }
-        bossModel.SetActive(false);
     }
 
 

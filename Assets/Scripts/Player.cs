@@ -49,10 +49,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Boss"))
-            other.gameObject.SetActive(false);
-
-        else if (!other.CompareTag("Item"))
+        if (!other.CompareTag("Item"))
         {
             Destroy(other.gameObject);
         }
@@ -92,7 +89,7 @@ public class Player : MonoBehaviour
             //PlayerRigidBody.constraints = RigidbodyConstraints.FreezePositionZ;
 
             
-            StartCoroutine(StopSlidingAfterDelay(0.5f)); // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
+            StartCoroutine(StopSlidingAfterDelay(0.5f)); // ½½¶óÀÌµù ½Ã°£ ¼³Á¤
         }
     }
     private System.Collections.IEnumerator StopSlidingAfterDelay(float delay)
@@ -100,12 +97,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(delay);
         PlayerAnimator.SetBool("isSliding", false);
         PlayerCollider.direction = 1;
-        // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ¾Ö´Ï¸ÞÀÌ¼Ç »óÅÂ º¹¿ø
         PlayerCollider.center = originalColliderCenter;
         
         
 
-        // ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Zï¿½ï¿½ ï¿½ï¿½ Yï¿½ï¿½)
+        // ÄÝ¶óÀÌ´õ ¹æÇâ ¿ø·¡´ë·Î (ZÃà ¡æ YÃà)
         
     }
 
