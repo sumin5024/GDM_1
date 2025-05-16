@@ -9,9 +9,9 @@ public class Speed_Item : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             
             
@@ -48,6 +48,9 @@ public class Speed_Item : MonoBehaviour
         LoopingZMovement.speed = originalSpeed;
         Debug.Log("속도 복귀: " + originalSpeed);
 
-        Destroy(gameObject); 
+        FindObjectOfType<Item_Spawner>()?.OnSpeedItemCollected(); // 스포너 호출
+
+        Destroy(gameObject);
+
     }
 }

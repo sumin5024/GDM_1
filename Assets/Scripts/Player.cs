@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
             //PlayerRigidBody.constraints = RigidbodyConstraints.FreezePositionZ;
 
             
-            StartCoroutine(StopSlidingAfterDelay(0.5f)); // ½½¶óÀÌµù ½Ã°£ ¼³Á¤
+            StartCoroutine(StopSlidingAfterDelay(0.5f)); // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
     private System.Collections.IEnumerator StopSlidingAfterDelay(float delay)
@@ -100,12 +100,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(delay);
         PlayerAnimator.SetBool("isSliding", false);
         PlayerCollider.direction = 1;
-        // ¾Ö´Ï¸ÞÀÌ¼Ç »óÅÂ º¹¿ø
+        // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         PlayerCollider.center = originalColliderCenter;
         
         
 
-        // ÄÝ¶óÀÌ´õ ¹æÇâ ¿ø·¡´ë·Î (ZÃà ¡æ YÃà)
+        // ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Zï¿½ï¿½ ï¿½ï¿½ Yï¿½ï¿½)
         
     }
 

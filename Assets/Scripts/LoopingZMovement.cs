@@ -51,7 +51,7 @@ public class LoopingZMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Obstacle" || other.gameObject.tag == "Boss")
+        if(other.gameObject.tag == "Obstacle")
         {
             if (!isShieldActive) // ½¯µå ÆÇÁ¤ 
             {
