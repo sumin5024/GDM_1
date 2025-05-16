@@ -14,6 +14,8 @@ public class Spawner : MonoBehaviour
     [Header("References")]
     public GameObject[] gameObjects;
 
+    public GameObject[] itemObjects;
+
     private void Start()
     {
         lastSpawnPos = new Vector3(fixedX, 0f, 0f);
@@ -28,6 +30,7 @@ public class Spawner : MonoBehaviour
             Spawn();
             GameManager.Instance.isSpawn = false;
         }
+        
     }
 
     void Spawn()
@@ -35,6 +38,11 @@ public class Spawner : MonoBehaviour
         Vector3 spawnPos;
         int randRange = Random.Range(0, gameObjects.Length);
         GameObject randomObject = gameObjects[randRange];
+       
+        Vector3 spawnPos_item;
+        int randRange_item = Random.Range(0, itemObjects.Length);
+        GameObject randomObject_item = itemObjects[randRange_item];
+      
         float randY;
         float randZ = Random.Range(ZRange.x, ZRange.y);
         if(randRange < 3) // 땅에 있는 물체
@@ -48,17 +56,40 @@ public class Spawner : MonoBehaviour
 
         spawnPos = new Vector3(fixedX, randY, randZ);
         
+        float randY_item;
+        float randZ_item = Random.Range(ZRange.x, ZRange.y);
+        if (randRange < 3) // 땅에 있는 물체
+        {
+            randY_item = groundY;
+        }
+        else // 공중에 있는 물체
+        {
+            randY_item = Random.Range(airYRange.x, airYRange.y);
+        }
+
+        spawnPos_item = new Vector3(fixedX, randY_item, randZ_item);
+          
         Instantiate(randomObject, spawnPos, Quaternion.identity);
-        
+        Instantiate(randomObject_item, spawnPos_item, Quaternion.identity);
+
     }
 
     void DeleteAllObstacles()
     {
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        GameObject[] obstacles_ITEM = GameObject.FindGameObjectsWithTag("Item");
 
-        foreach(GameObject obstacle in obstacles)
+        foreach (GameObject obstacle in obstacles)
         {
             Destroy(obstacle);
+           
         }
+        foreach (GameObject obstacle in obstacles_ITEM)
+        {
+            Destroy(obstacle);
+
+        }
+
     }
+   
 }
