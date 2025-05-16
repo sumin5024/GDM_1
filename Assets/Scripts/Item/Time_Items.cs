@@ -10,6 +10,9 @@ public class Time_Items : MonoBehaviour
         {
             GameManager.Instance.AddTime(timeChangeAmount);
             {
+                Debug.Log("시간 증가");
+
+                FindObjectOfType<Item_Spawner>()?.OnTimeItemCollected(); // 스포너호출
                 Destroy(gameObject);
             }
         }
