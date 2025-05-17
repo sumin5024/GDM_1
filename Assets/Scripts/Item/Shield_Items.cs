@@ -7,6 +7,13 @@ public class Shield_Items : MonoBehaviour
     public float effectDuration = 2.0f; // 효과 지속 시간
     public GameObject shieldSurroundingPrefab; 
 
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -14,6 +21,11 @@ public class Shield_Items : MonoBehaviour
             StartCoroutine(ActivateShield(other.gameObject));
             GetComponent<Collider>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;
+
+            if (anim != null)
+            {
+                anim.SetTrigger("Activate");
+            }
         }
     }
 
@@ -34,6 +46,6 @@ public class Shield_Items : MonoBehaviour
         FindObjectOfType<Item_Spawner>()?.OnShieldItemCollected();
 
         Destroy(shieldEffect);
-        Destroy(gameObject);
+        Destroy(gameObject, 0.2f);
     }
 }

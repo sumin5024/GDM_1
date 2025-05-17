@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Item_Spawner : MonoBehaviour
 {
@@ -58,25 +60,36 @@ public class Item_Spawner : MonoBehaviour
         }
 
         
-        int itemType = Random.Range(0, 3); 
+        
+        List<int> availableTypes = new List<int>();
+        if (!speedItemSpawned && speedItems.Length > 0) availableTypes.Add(0);
+        if (!timeItemSpawned && timeItems.Length > 0) availableTypes.Add(1);
+        if (!shieldItemSpawned && shieldItem.Length > 0) availableTypes.Add(2);
 
-        if (itemType == 0 && !speedItemSpawned && speedItems.Length > 0)
+        if (availableTypes.Count == 0) return; 
+
+        
+        int selectedType = availableTypes[Random.Range(0, availableTypes.Count)];
+
+        switch (selectedType)
         {
-            GameObject item = speedItems[Random.Range(0, speedItems.Length)];
-            Instantiate(item, spawnPos, Quaternion.identity);
-            speedItemSpawned = true;
-        }
-        else if (itemType == 1 && !timeItemSpawned && timeItems.Length > 0)
-        {
-            GameObject item = timeItems[Random.Range(0, timeItems.Length)];
-            Instantiate(item, spawnPos, Quaternion.identity);
-            timeItemSpawned = true;
-        }
-        else if (itemType == 2 && !shieldItemSpawned && shieldItem.Length > 0)
-        {
-            GameObject item = shieldItem[Random.Range(0, shieldItem.Length)];
-            Instantiate(item, spawnPos, Quaternion.identity);
-            shieldItemSpawned = true;
+            case 0:
+                GameObject speed = speedItems[Random.Range(0, speedItems.Length)];
+                Instantiate(speed, spawnPos, Quaternion.identity);
+                speedItemSpawned = true;
+                break;
+
+            case 1:
+                GameObject time = timeItems[Random.Range(0, timeItems.Length)];
+                Instantiate(time, spawnPos, Quaternion.identity);
+                timeItemSpawned = true;
+                break;
+
+            case 2:
+                GameObject shield = shieldItem[Random.Range(0, shieldItem.Length)];
+                Instantiate(shield, spawnPos, Quaternion.identity);
+                shieldItemSpawned = true;
+                break;
         }
     }
 
