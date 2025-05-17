@@ -7,30 +7,40 @@ public class Speed_Item : MonoBehaviour
     public float speedAmount = 0.7f;  // 스피드 변화량
     public float effectDuration = 2.0f; // 효과 지속 시간
 
+    private Animator anim;
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        anim = GetComponent<Animator>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            
-            
+
+
             if (gameObject.name.Contains("Faster"))
             {
-                speedAmount = Mathf.Abs(speedAmount);  
+                speedAmount = Mathf.Abs(speedAmount);
                 Debug.Log("속도 증가 아이템: " + speedAmount);
-                
+
             }
             else if (gameObject.name.Contains("Slower"))
             {
-                speedAmount = -Mathf.Abs(speedAmount);  
+                speedAmount = -Mathf.Abs(speedAmount);
                 Debug.Log("속도 감소 아이템: " + speedAmount);
-                
+
             }
 
-            StartCoroutine (ApplyTemporarySpeed());
+            if (anim != null)
+            {
+                anim.SetTrigger("Activate");
+            }
 
-            
+            StartCoroutine(ApplyTemporarySpeed());
+
+
         }
     }
 
@@ -48,6 +58,10 @@ public class Speed_Item : MonoBehaviour
         LoopingZMovement.speed = originalSpeed;
         Debug.Log("속도 복귀: " + originalSpeed);
 
-        Destroy(gameObject); 
+        FindObjectOfType<Item_Spawner>()?.OnSpeedItemCollected(); // 스포너 호출
+
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
+
     }
 }
