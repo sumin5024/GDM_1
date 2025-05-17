@@ -18,6 +18,7 @@ public class Shield_Items : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundManager.instance.getPItemSound.Play();
             StartCoroutine(ActivateShield(other.gameObject));
             GetComponent<Collider>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;

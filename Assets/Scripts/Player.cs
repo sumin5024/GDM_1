@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded && !PlayerAnimator.GetBool("isJumping"))
         {
-
+            SoundManager.instance.playerJumpSound.Play();
             Debug.Log("jump");
             PlayerAnimator.SetBool("isJumping", true);
             PlayerRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
     {
         if (Keyboard.current.downArrowKey.wasPressedThisFrame && isGrounded)
         {
-
+            SoundManager.instance.playerSlidingSound.Play();
             Debug.Log("slide");
             PlayerAnimator.SetBool("isSliding", true);
             PlayerCollider.direction = 2;

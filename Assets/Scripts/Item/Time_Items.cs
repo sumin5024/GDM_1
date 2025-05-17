@@ -21,6 +21,7 @@ public class Time_Items : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            SoundManager.instance.getPItemSound.Play();
             GameManager.Instance.AddTime(timeChangeAmount);
             {
                 Debug.Log("시간 변화");

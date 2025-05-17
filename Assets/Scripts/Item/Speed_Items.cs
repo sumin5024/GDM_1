@@ -22,12 +22,14 @@ public class Speed_Item : MonoBehaviour
 
             if (gameObject.name.Contains("Faster"))
             {
+                SoundManager.instance.getPItemSound.Play();
                 speedAmount = Mathf.Abs(speedAmount);
                 Debug.Log("속도 증가 아이템: " + speedAmount);
 
             }
             else if (gameObject.name.Contains("Slower"))
             {
+                SoundManager.instance.getNItemSound.Play();
                 speedAmount = -Mathf.Abs(speedAmount);
                 Debug.Log("속도 감소 아이템: " + speedAmount);
 
