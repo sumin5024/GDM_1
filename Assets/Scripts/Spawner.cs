@@ -3,7 +3,7 @@ using System.Collections;
 public class Spawner : MonoBehaviour
 {
     [Header("Settings")]
-    private float fixedX = 0.347f;
+    private float fixedX = 0.359f;
     public float groundY = 0.0141f;
     public Vector2 airYRange = new Vector2(0.125f, 0.15f);
     public Vector2 ZRange = new Vector2(-0.66f, 0.54f);
