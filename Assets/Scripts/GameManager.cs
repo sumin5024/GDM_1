@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("GameOver!!");
         }
-        text_Timer.text = "Left Time : " + Mathf.Round(LimitTime) + " sec";
+        text_Timer.text =  Mathf.Round(LimitTime) + " sec";
     }
 
     public void CheckRun()
