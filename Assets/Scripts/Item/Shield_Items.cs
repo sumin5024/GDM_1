@@ -5,9 +5,11 @@ using System.Collections;
 public class Shield_Items : MonoBehaviour
 {
     public float effectDuration = 2.0f; // 효과 지속 시간
-    public GameObject shieldSurroundingPrefab; 
+    public GameObject shieldSurroundingPrefab;
+    public GameObject shieldActivateEffectPrefab;
 
     private Animator anim;
+    
 
     private void Start()
     {
@@ -19,24 +21,32 @@ public class Shield_Items : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SoundManager.instance.getPItemSound.Play();
-            StartCoroutine(ActivateShield(other.gameObject));
+            
             GetComponent<Collider>().enabled = false;
-            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<MeshRenderer>().enabled = false; //눈에 안보이게 수정. 
 
-            if (anim != null)
-            {
-                anim.SetTrigger("Activate");
-            }
+            StartCoroutine(ActivateShield(other.gameObject));
+            
         }
     }
+    
 
     private IEnumerator ActivateShield(GameObject player)
     {
         LoopingZMovement.isShieldActive = true;
         Debug.Log("쉴드 ON");
 
-        GameObject shieldEffect = Instantiate(shieldSurroundingPrefab, player.transform.position, Quaternion.identity);
-        shieldEffect.transform.SetParent(player.transform);
+        //item active part 
+        Transform sheildApos = player.transform.Find("ItemActP");
+        GameObject ActiveS = Instantiate(shieldActivateEffectPrefab);
+        ActiveS.transform.SetParent(sheildApos);
+        ActiveS.transform.localPosition = Vector3.zero;
+        Destroy(ActiveS,0.5f);
+
+        //shieldsurround 구현
+        Transform shieldPos = player.transform.Find("ShieldPosition");
+        GameObject shieldEffect = Instantiate(shieldSurroundingPrefab);
+        shieldEffect.transform.SetParent(shieldPos);
         shieldEffect.transform.localPosition = Vector3.zero;
 
         yield return new WaitForSeconds(effectDuration);

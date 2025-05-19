@@ -6,6 +6,7 @@ public class Speed_Item : MonoBehaviour
 {
     public float speedAmount = 0.7f;  // 스피드 변화량
     public float effectDuration = 2.0f; // 효과 지속 시간
+    public GameObject SpeedActivePrefab;
 
     private Animator anim;
 
@@ -40,14 +41,21 @@ public class Speed_Item : MonoBehaviour
                 anim.SetTrigger("Activate");
             }
 
-            StartCoroutine(ApplyTemporarySpeed());
+            StartCoroutine(ApplyTemporarySpeed(other.gameObject));
 
 
         }
     }
 
-    private IEnumerator ApplyTemporarySpeed()
+    private IEnumerator ApplyTemporarySpeed(GameObject player)
     {
+        Transform speedApos = player.transform.Find("ItemActP");
+        GameObject ActiveS = Instantiate(SpeedActivePrefab);
+        ActiveS.transform.SetParent(speedApos);
+        ActiveS.transform.localPosition = Vector3.zero;
+        Destroy(ActiveS,0.5f);
+
+
         float originalSpeed = LoopingZMovemet_reverse.speed;// LoopingZMovement_reverse.speed;
         Debug.Log("원래 속도: " + originalSpeed);
         float newSpeed = Mathf.Clamp(originalSpeed + speedAmount, 0.1f, 1.5f);
