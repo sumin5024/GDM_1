@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class LoopingZMovement : MonoBehaviour
 {
@@ -9,45 +10,18 @@ public class LoopingZMovement : MonoBehaviour
     private float previousZ;
     public float totalZDistance = 0f;
 
-    public Vector3 moveDirection = Vector3.forward;
+    public float speedAmount = 0.4f;  // 스피드 변화량
+    public float effectDuration = 2.0f; // 효과 지속 시간
 
-    private Vector3 startPosition;
+    
 
     public static bool isShieldActive = false; // 쉴드 아이템 
 
     void Start()
     {
-        startPosition = transform.position;
-        startPosition.z = startZ;
-        transform.position = startPosition;
-
-        previousZ = startZ;
     }
 
-    void Update()
-    {
-        transform.Translate(moveDirection * speed * Time.deltaTime);
-        
-        CheckDistance();
-        // 앞으로 이동 하여 반복
-        if (transform.position.z >= endZ)
-        {
-            Vector3 pos = transform.position;
-            pos.z = startZ;
-            transform.position = pos;
-            Player.Instance.isGrounded = true;
-            GameManager.Instance.isSpawn = true;
-
-        }
-
-        // 가속
-        if(speed < 0.7f)
-        {
-            speed += 0.02f * Time.deltaTime;
-        }
-
-        GameManager.Instance.runDistance = totalZDistance;
-    }
+  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -55,28 +29,41 @@ public class LoopingZMovement : MonoBehaviour
         {
             if (!isShieldActive) // 쉴드 판정 
             {
-                if (speed > 0.2f) { speed -= 0.2f; }
-
+                SoundManager.instance.getNItemSound.Play();
+               // LoopingZMovemet_reverse.speed = -Mathf.Abs(LoopingZMovemet_reverse.speed);
+              //  Debug.Log("속도 감소 아이템: " + speedAmount);
+               // if (LoopingZMovemet_reverse.speed > 0.2f) { LoopingZMovemet_reverse.speed -= 0.2f; }
+                GameManager.Instance.isSpawn = true;
+                StartCoroutine(ApplyTemporarySpeed());
+                
             }
             else
             {
-                Debug.Log("Shield On"); 
+                Debug.Log("Shield On");
+                GameManager.Instance.isSpawn = true;
             }
             
         }
     }
-
-    public void CheckDistance()
+    private IEnumerator ApplyTemporarySpeed()
     {
-        float currentZ = transform.position.z;
-        float deltaZ = currentZ - previousZ;
+        float originalSpeed = LoopingZMovemet_reverse.speed;// LoopingZMovement_reverse.speed;
+        Debug.Log("원래 속도: " + originalSpeed);
+        float newSpeed = Mathf.Clamp(originalSpeed - speedAmount, 0.1f, 1.5f);
 
-        if (deltaZ > 0f)
-        {
-            totalZDistance += deltaZ;
-        }
+        LoopingZMovemet_reverse.speed = newSpeed;
+        Debug.Log("속도 변경 적용: " + newSpeed);
 
-        previousZ = currentZ;
+        yield return new WaitForSeconds(effectDuration);
+
+        LoopingZMovemet_reverse.speed = originalSpeed;
+        Debug.Log("속도 복귀: " + originalSpeed);
+
+       
+
+        yield return new WaitForSeconds(0.1f);
+       
+
     }
 
 

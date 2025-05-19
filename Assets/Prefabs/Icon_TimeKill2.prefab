@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3383011436061378437}
   - component: {fileID: 5601343441312574225}
   - component: {fileID: 8996917074972975512}
+  - component: {fileID: 1854686072174400140}
   m_Layer: 0
   m_Name: Icon_TimeKill2
   m_TagString: Item
@@ -123,3 +124,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeChangeAmount: -5
+--- !u!114 &1854686072174400140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586416163650578551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72fc305a0222864d83540df1964a22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startZ: 0
+  endZ: -3
+  totalZDistance: 0
+  issecond: 0
+  moveDirection: {x: -0, y: -0, z: -1}

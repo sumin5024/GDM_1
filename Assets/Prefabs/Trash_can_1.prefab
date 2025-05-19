@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1918254532535701988}
   - component: {fileID: 6660558534224991459}
   - component: {fileID: 5009222331890752175}
+  - component: {fileID: -1860768883177264992}
   m_Layer: 0
   m_Name: Trash_can_1
   m_TagString: Obstacle
@@ -108,3 +109,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.029283924, y: 0.03144995, z: 0.029283943}
   m_Center: {x: -0.000000008381903, y: 0.0000000018626451, z: 0.0000000121071935}
+--- !u!114 &-1860768883177264992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721854316499333029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72fc305a0222864d83540df1964a22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startZ: 0
+  endZ: -1.5
+  totalZDistance: 0
+  issecond: 0
+  isitem: 0
+  isObstacle: 1
+  moveDirection: {x: -0, y: -0, z: -1}

@@ -354,6 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1699431774132774599}
   - component: {fileID: -7219815380551852527}
+  - component: {fileID: -1027643668166053344}
   m_Layer: 0
   m_Name: Screen_1
   m_TagString: Obstacle
@@ -401,3 +402,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.052761912, y: 0.090454265, z: 0.09302512}
   m_Center: {x: 0.021024764, y: 0.0047728717, z: 0.002284512}
+--- !u!114 &-1027643668166053344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170733589207906916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72fc305a0222864d83540df1964a22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startZ: 0
+  endZ: -1.5
+  totalZDistance: 0
+  issecond: 0
+  isitem: 0
+  isObstacle: 1
+  moveDirection: {x: -0, y: -0, z: -1}

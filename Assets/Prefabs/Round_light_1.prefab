@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5188911854274997204}
   - component: {fileID: 770125247043474015}
+  - component: {fileID: -6281265032359292548}
   m_Layer: 0
   m_Name: Round_light_1
   m_TagString: Obstacle
@@ -314,3 +315,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.011
   m_Center: {x: 0, y: -0.012, z: 0}
+--- !u!114 &-6281265032359292548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133131057451494662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72fc305a0222864d83540df1964a22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startZ: 0
+  endZ: -1.5
+  totalZDistance: 0
+  issecond: 0
+  isitem: 0
+  isObstacle: 1
+  moveDirection: {x: -0, y: -0, z: -1}

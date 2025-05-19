@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
-    public float runDistance = 0; // 플레이어가 달린 총 거리
+    public float runDistance = 0f; // 플레이어가 달린 총 거리
     public float arrivalDistance = 17f; // 플레이어가 달려야할 총 거리
 
     public float LimitTime = 60f;
@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     public Slider runBarSlider;
 
     public bool isSpawn = true;
+    void Start()
+    {
+        runDistance = 0f;
+    }
+   
 
     public static GameManager Instance
     {
@@ -27,9 +32,12 @@ public class GameManager : MonoBehaviour
         if (LimitTime < 0f) LimitTime = 0f; 
     }
 
+    
+
     private void Awake()
     {
-        if(instance == null)
+        
+        if (instance == null)
         {
             instance = this;
         }

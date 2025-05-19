@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3803597223442751269}
   - component: {fileID: 3669319035646965919}
   - component: {fileID: -2383539595206045437}
+  - component: {fileID: 6041806162439633447}
   m_Layer: 0
   m_Name: Corn_1
   m_TagString: Obstacle
@@ -109,3 +110,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01, y: 0.18599302, z: 0.01}
   m_Center: {x: 0, y: 0.09299651, z: 0}
+--- !u!114 &6041806162439633447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872740675306463126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72fc305a0222864d83540df1964a22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startZ: 0
+  endZ: -1.5
+  totalZDistance: 0
+  issecond: 0
+  isitem: 0
+  isObstacle: 1
+  moveDirection: {x: -0, y: -0, z: -1}

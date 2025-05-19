@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6894420346903421824}
   - component: {fileID: 2801103105527258830}
   - component: {fileID: 3465893577406831928}
+  - component: {fileID: -5447704792274081482}
   m_Layer: 0
   m_Name: Icon_Faster3
   m_TagString: Item
@@ -123,3 +124,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedAmount: 0.5
   effectDuration: 1
+--- !u!114 &-5447704792274081482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551365345773625769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72fc305a0222864d83540df1964a22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startZ: 0
+  endZ: -3
+  totalZDistance: 0
+  issecond: 0
+  moveDirection: {x: -0, y: -0, z: -1}

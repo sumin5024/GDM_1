@@ -48,16 +48,16 @@ public class Speed_Item : MonoBehaviour
 
     private IEnumerator ApplyTemporarySpeed()
     {
-        float originalSpeed = LoopingZMovement.speed;
+        float originalSpeed = LoopingZMovemet_reverse.speed;// LoopingZMovement_reverse.speed;
         Debug.Log("원래 속도: " + originalSpeed);
         float newSpeed = Mathf.Clamp(originalSpeed + speedAmount, 0.1f, 1.5f);
 
-        LoopingZMovement.speed = newSpeed;
+        LoopingZMovemet_reverse.speed = newSpeed;
         Debug.Log("속도 변경 적용: " + newSpeed);
 
         yield return new WaitForSeconds(effectDuration);
 
-        LoopingZMovement.speed = originalSpeed;
+        LoopingZMovemet_reverse.speed = originalSpeed;
         Debug.Log("속도 복귀: " + originalSpeed);
 
         FindObjectOfType<Item_Spawner>()?.OnSpeedItemCollected(); // 스포너 호출

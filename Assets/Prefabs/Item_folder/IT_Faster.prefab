@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8637952382200770198}
+  - component: {fileID: 601739416416566629}
   m_Layer: 0
   m_Name: IT_Faster
   m_TagString: Untagged
@@ -32,6 +33,24 @@ Transform:
   - {fileID: 2030677021179412656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &601739416416566629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529261530068284388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72fc305a0222864d83540df1964a22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startZ: 0
+  endZ: -2
+  totalZDistance: 0
+  issecond: 0
+  isitem: 1
+  moveDirection: {x: -0, y: -0, z: -1}
 --- !u!1 &9030975763840991238
 GameObject:
   m_ObjectHideFlags: 0

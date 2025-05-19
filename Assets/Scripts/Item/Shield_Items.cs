@@ -47,6 +47,6 @@ public class Shield_Items : MonoBehaviour
         FindObjectOfType<Item_Spawner>()?.OnShieldItemCollected();
 
         Destroy(shieldEffect);
-        Destroy(gameObject, 0.2f);
+        Destroy(gameObject, 0.1f);
     }
 }

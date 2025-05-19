@@ -58,7 +58,7 @@ public class Item_Spawner : MonoBehaviour
                 return;
             }
         }
-
+        //모든 콜라이더가 아이템이나 장애물이면 스폰 안함
         
         
         List<int> availableTypes = new List<int>();
