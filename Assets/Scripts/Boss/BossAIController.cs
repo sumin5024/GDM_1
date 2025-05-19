@@ -15,9 +15,11 @@ using static Unity.Burst.Intrinsics.X86.Avx;
  */
 public class BossAIController : MonoBehaviour
 {
-    public float lifeTime = 10f;
+    private float appearTime;
     public bool isRandom = false;
     int act = -1;
+
+    public AudioClip whistle_clip;
 
     [Header("Whistle Action Pattern")]
     public bool isSpawnCorn;
@@ -58,6 +60,7 @@ public class BossAIController : MonoBehaviour
     private Coroutine actionCoroutine;
     private void Start()
     {
+
         withObstacleSpwaner = (bool) GameObject.FindAnyObjectByType<Spawner>(); //�������� ����
 
         player = FindAnyObjectByType<LoopingZMovement>().gameObject;
@@ -67,8 +70,8 @@ public class BossAIController : MonoBehaviour
         tmp_whistle.transform.eulerAngles = new Vector3(0, -90, 0);
         tmp_whistle.SetActive(false);
 
-        //lifeTime�� �ڿ� ����
-        Destroy(this.gameObject, lifeTime);
+        //동작 모델 비활성화
+        bossModel.SetActive(false);
 
     }
     private void OnEnable()
@@ -92,8 +95,14 @@ public class BossAIController : MonoBehaviour
             Destroy(obstacle);
         }
     }
+    private void Update()
+    {
+        appearTime = GameManager.Instance.LimitTime;
+    }
     private void LateUpdate()
     {
+        if (appearTime > 30) return;
+        else if(appearTime <5) Destroy(gameObject);
         if (GameManager.Instance.isSpawn && LockTime <=  0)
         {
             LockTime = 2;
@@ -119,7 +128,8 @@ public class BossAIController : MonoBehaviour
     {
         InitPattern();
         yield return new WaitForSeconds(delaytime);
-                 
+
+        animator.ResetTrigger("Idle");
         if (actionCoroutine != null) StopCoroutine(actionCoroutine);
         if(isRandom)  act = Random.Range(0,4);
         else act = ++act% 4;
@@ -208,6 +218,8 @@ public class BossAIController : MonoBehaviour
 
         yield return new WaitForSeconds(whistleDuration);//ȣ����� ���� ���� �� �ð� ��
         tmp_whistle.SetActive(false);
+        animator.SetTrigger("Idle");
+        yield return new WaitForSeconds(whistleDuration);//ȣ����� ���� ���� �� �ð� ��
 
         int h = Random.Range(0, 3);
         animator.SetInteger("ThrowBaton", h);
@@ -217,6 +229,10 @@ public class BossAIController : MonoBehaviour
         Vector3 pos = transform.position;
         tmp = Instantiate(safetybaton_prefab, pos + Vector3.up*h* Safetybaton_gap, Quaternion.Euler(0,0,0));
         Destroy(tmp, 2f);
+
+        yield return new WaitForSeconds(0.5f);
+        animator.SetInteger("ThrowBaton", -1);
+
     }
 
     private void Dash() 
@@ -230,30 +246,28 @@ public class BossAIController : MonoBehaviour
 
         Debug.Log("StartDash");
 
-        yield return new WaitForSeconds(whistleDuration);   //ȣ����� ���� ���� �� �ð� ��
-
-        animator.SetTrigger("Idle");
 
         yield return new WaitForSeconds(whistleDuration);   //ȣ����� ���� ���� �� �ð� ��
 
+        animator.SetTrigger("Dash");
         tmp_whistle.SetActive(false);
 
-        bossModel.SetActive(false); //�ִϸ��̼� ������Ʈ  ��Ȱ��ȭ
-
         //�뽬 ������Ʈ ����
-        Vector3 pos = transform.position;  
-        GameObject tmp = Instantiate(dashCollider_prefab, pos, Quaternion.identity);
-        Destroy(tmp, 2);
+        Vector3 pos = transform.position;
+        GameObject tmp = bossModel;//Instantiate(dashCollider_prefab, pos, Quaternion.identity);
         //�̵�
         float speed = 0;
         float Zspeed = LoopingZMovement.speed;
-        while (tmp) 
+        float time = 2f;
+        while (time>0) 
         {
+            time -= Time.deltaTime;
             speed += dashSpeed;
-            tmp.transform.Translate(Vector3.back * (-Zspeed + speed) * Time.deltaTime);
+            tmp.transform.Translate(Vector3.forward * ( + speed) * Time.deltaTime);
             yield return null;
 
         }
+        bossModel.gameObject.SetActive(false);
     }
 
 
@@ -262,6 +276,8 @@ public class BossAIController : MonoBehaviour
         Debug.Log("Whistle");
 
         animator.SetTrigger("Whistle"); // ȣ���� �ִϸ��̼�
+
+        SoundManager.instance.bossSound.PlayOneShot(whistle_clip);
 
         tmp_whistle.SetActive(true);    //ȣ���� UI Ȱ��ȭ
 
