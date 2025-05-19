@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     private static Player instance;
     [Header("Settings")]
     public float jumpForce;
+    public float lowGravity = 1f;           
+    public float highGravity = 1f;          
 
     [Header("References")]
     public Rigidbody PlayerRigidBody;
@@ -37,6 +39,27 @@ public class Player : MonoBehaviour
       
 
     }
+
+    void FixedUpdate()
+    {
+
+        // 공중에 있을 때 중력 조정
+        if (!isGrounded)
+        {
+            if (PlayerRigidBody.linearVelocity.y > 0)
+            {
+                // 상승 중
+                PlayerRigidBody.AddForce(Vector3.down * lowGravity, ForceMode.Acceleration);
+            }
+            else
+            {
+                // 낙하 중
+                PlayerRigidBody.AddForce(Vector3.up * highGravity, ForceMode.Acceleration);
+            }
+        }
+    }
+
+
 
     private void OnCollisionEnter(Collision collider)
     {
@@ -74,6 +97,12 @@ public class Player : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded && !PlayerAnimator.GetBool("isJumping"))
         {
+            Vector3 velocity = PlayerRigidBody.linearVelocity;
+            velocity.y = jumpForce;
+            PlayerRigidBody.linearVelocity = velocity;
+
+
+
             SoundManager.instance.playerJumpSound.Play();
             Debug.Log("jump");
             PlayerAnimator.SetBool("isJumping", true);

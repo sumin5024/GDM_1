@@ -3726,8 +3726,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC73C\uC544\uC545"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c90a9d10fefea5346b310e7105bf772e, type: 2}
-  m_sharedMaterial: {fileID: -7055854107370105975, guid: c90a9d10fefea5346b310e7105bf772e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5141,7 +5141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46eb5b7435fcf8a41bc0f04da57e36f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 0.3
+  jumpForce: 0.35
+  lowGravity: 3
+  highGravity: 2.2
   PlayerRigidBody: {fileID: 952132123390196314}
   PlayerAnimator: {fileID: 952132123390196311}
   PlayerCollider: {fileID: 952132123390196312}

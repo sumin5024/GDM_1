@@ -50,7 +50,6 @@ public class LoopingZMovemet_reverse : MonoBehaviour
             Vector3 pos = transform.position;
             pos.z = startZ;
             transform.position = pos;
-            Player.Instance.isGrounded = true;
             if (isObstacle)
             {
                 GameManager.Instance.isSpawn = true;
