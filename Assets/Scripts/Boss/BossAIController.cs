@@ -82,7 +82,7 @@ public class BossAIController : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
-        OnAppearDisappearEffect();
+       // OnAppearDisappearEffect();
 
     }
 
@@ -102,7 +102,7 @@ public class BossAIController : MonoBehaviour
     private void LateUpdate()
     {
         if (appearTime > 30) return;
-        else if(appearTime <5) Destroy(gameObject);
+        else if (appearTime < 5) { OnAppearDisappearEffect(); Destroy(gameObject); }
         if (GameManager.Instance.isSpawn && LockTime <=  0)
         {
             LockTime = 2;
