@@ -70,7 +70,7 @@ public class GameEnd : MonoBehaviour
         }
 
         // 게임 오버
-        if (GameManager.Instance.LimitTime < 0f)
+        if (GameManager.Instance.LimitTime <= 0f)
         {
             SoundManager.instance.gameOverSound.Play();
             Debug.Log("game over!");

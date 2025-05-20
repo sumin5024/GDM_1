@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         if(LimitTime < 0f)
         {
             Debug.Log("GameOver!!");
+            LimitTime = 0f;
         }
         text_Timer.text =  Mathf.Round(LimitTime) + "";
     }
