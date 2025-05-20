@@ -7,11 +7,15 @@ public class Time_Items : MonoBehaviour
     public float timeChangeAmount = 5f;
     public GameObject TimeActivePrefab;
 
+    private MeshRenderer meshRenderer;
+
     private Animator anim;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>(); ;
+        anim.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +23,14 @@ public class Time_Items : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Transform itemActPos = other.transform.Find("ItemActP");
+            //Transform itemActPos = other.transform.Find("ItemActP");
+            MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>(); // enable 
+            foreach (var mr in meshRenderers)
+            {
+                mr.enabled = false;
+                Debug.Log("MeshRenderer 끔: " + mr.gameObject.name);
+            }
+            anim.enabled = false;
             
             SoundManager.instance.getPItemSound.Play();
             GameManager.Instance.AddTime(timeChangeAmount);

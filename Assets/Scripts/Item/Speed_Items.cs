@@ -5,14 +5,25 @@ using System.Collections;
 public class Speed_Item : MonoBehaviour
 {
     public float speedAmount = 0.7f;  // 스피드 변화량
-    public float effectDuration = 2.0f; // 효과 지속 시간
+    public float effectDuration = 0.5f; // 효과 지속 시간
     public GameObject SpeedActivePrefab;
+    private MeshRenderer meshRenderer;
 
     private Animator anim;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>(); ;
+        anim.enabled = true;
+    }
+    
+    private void OnEnable()
+    {
+        if (anim != null)
+        {
+            anim.enabled = true;  // 오브젝트가 다시 활성화될 때 애니메이터 켜기
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,10 +47,14 @@ public class Speed_Item : MonoBehaviour
 
             }
 
-            if (anim != null)
+            MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>(); // enable 
+            foreach (var mr in meshRenderers)
             {
-                anim.SetTrigger("Activate");
+                mr.enabled = false;
+                Debug.Log("MeshRenderer 끔: " + mr.gameObject.name);
             }
+            anim.enabled = false;
+
 
             StartCoroutine(ApplyTemporarySpeed(other.gameObject));
 
@@ -49,11 +64,13 @@ public class Speed_Item : MonoBehaviour
 
     private IEnumerator ApplyTemporarySpeed(GameObject player)
     {
+
+
         Transform speedApos = player.transform.Find("ItemActP");
         GameObject ActiveS = Instantiate(SpeedActivePrefab);
         ActiveS.transform.SetParent(speedApos);
         ActiveS.transform.localPosition = Vector3.zero;
-        Destroy(ActiveS,0.5f);
+        Destroy(ActiveS, 0.5f);
 
 
         float originalSpeed = LoopingZMovemet_reverse.speed;// LoopingZMovement_reverse.speed;
@@ -71,6 +88,7 @@ public class Speed_Item : MonoBehaviour
         FindObjectOfType<Item_Spawner>()?.OnSpeedItemCollected(); // 스포너 호출
 
         yield return new WaitForSeconds(0.1f);
+        anim.enabled = true; // enable 추가 
         Destroy(gameObject);
 
     }

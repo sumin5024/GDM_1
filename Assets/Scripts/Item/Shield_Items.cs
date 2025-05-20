@@ -9,11 +9,22 @@ public class Shield_Items : MonoBehaviour
     public GameObject shieldActivateEffectPrefab;
 
     private Animator anim;
-    
+    private MeshRenderer meshRenderer;
+
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>(); ;
+        anim.enabled = true;
+    }
+    
+    private void OnEnable()
+    {
+        if (anim != null)
+        {
+            anim.enabled = true;  // 오브젝트가 다시 활성화될 때 애니메이터 켜기
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,15 +32,20 @@ public class Shield_Items : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SoundManager.instance.getPItemSound.Play();
-            
-            GetComponent<Collider>().enabled = false;
-            GetComponent<MeshRenderer>().enabled = false; //눈에 안보이게 수정. 
+
+            MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>(); // enable 
+            foreach (var mr in meshRenderers)
+            {
+                mr.enabled = false;
+                Debug.Log("MeshRenderer 끔: " + mr.gameObject.name);
+            }
+            anim.enabled = false;
 
             StartCoroutine(ActivateShield(other.gameObject));
-            
+
         }
     }
-    
+
 
     private IEnumerator ActivateShield(GameObject player)
     {
@@ -41,7 +57,7 @@ public class Shield_Items : MonoBehaviour
         GameObject ActiveS = Instantiate(shieldActivateEffectPrefab);
         ActiveS.transform.SetParent(sheildApos);
         ActiveS.transform.localPosition = Vector3.zero;
-        Destroy(ActiveS,0.5f);
+        Destroy(ActiveS, 0.5f);
 
         //shieldsurround 구현
         Transform shieldPos = player.transform.Find("ShieldPosition");
@@ -58,5 +74,6 @@ public class Shield_Items : MonoBehaviour
 
         Destroy(shieldEffect);
         Destroy(gameObject, 0.1f);
+        anim.enabled = true;
     }
 }

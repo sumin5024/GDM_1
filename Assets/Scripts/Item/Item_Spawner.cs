@@ -48,7 +48,7 @@ public class Item_Spawner : MonoBehaviour
         );
 
         
-        float checkRadius = 0.1f;
+        float checkRadius = 0.3f;
         Collider[] colliders = Physics.OverlapSphere(spawnPos, checkRadius);
         foreach (var col in colliders)
         {
