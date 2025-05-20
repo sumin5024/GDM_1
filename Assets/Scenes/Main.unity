@@ -5205,9 +5205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46eb5b7435fcf8a41bc0f04da57e36f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 0.3
-  lowGravity: 1
-  highGravity: 1
+  jumpForce: 0.34
+  lowGravity: 3
+  highGravity: 2.2
   PlayerRigidBody: {fileID: 952132123390196314}
   PlayerAnimator: {fileID: 952132123390196311}
   PlayerCollider: {fileID: 952132123390196312}
