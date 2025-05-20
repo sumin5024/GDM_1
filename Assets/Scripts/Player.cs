@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
     private static Player instance;
     [Header("Settings")]
-    public float jumpForce;
-    public float lowGravity = 1f;           
-    public float highGravity = 1f;          
+    public float jumpForce = 0.34f;
+    public float lowGravity = 3f;           
+    public float highGravity = 2.2f;          
 
     [Header("References")]
     public Rigidbody PlayerRigidBody;
